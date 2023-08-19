@@ -4,7 +4,7 @@ module.exports = grammar({
   name: 'cisco_ios_configs',
 
   rules: {
-    config: $ => repeat($._statement)
+    start: $ => repeat($._statement)
   },
 
   rules: {
@@ -24,6 +24,7 @@ module.exports = grammar({
       $.vty_login_method,
       $.switchport_interface,
       $.port_security,
+      $.access_vlan,
       $.command,
       $.config_block
     ),
