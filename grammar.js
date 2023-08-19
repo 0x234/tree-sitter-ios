@@ -4,10 +4,8 @@ module.exports = grammar({
   name: 'cisco_ios_configs',
 
   rules: {
-    start: $ => repeat($._statement)
-  },
+    start: $ => repeat($._statement),
 
-  rules: {
     _statement: $ => choice(
       $.interface,
       $.routing_protocol,

@@ -1,0 +1,750 @@
+{
+  "name": "cisco_ios_configs",
+  "rules": {
+    "start": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_statement"
+      }
+    },
+    "_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "interface"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "routing_protocol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "acl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "aaa"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "vty_access"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bgp"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "eigrp"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rip"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "trunk_interface"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "interface_acl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "acl_rule"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "bgp_neighbor"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "vty_login_method"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "switchport_interface"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "port_security"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "access_vlan"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "command"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "config_block"
+        }
+      ]
+    },
+    "command": {
+      "type": "PATTERN",
+      "value": "[a-z]+\\s+[A-Za-z0-9-]+"
+    },
+    "config_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[a-z]+\\s+[A-Za-z0-9-]+"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "interface": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "interface"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9-]+"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "routing_protocol": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "router"
+            },
+            {
+              "type": "STRING",
+              "value": "bgp"
+            },
+            {
+              "type": "STRING",
+              "value": "ospf"
+            },
+            {
+              "type": "STRING",
+              "value": "eigrp"
+            },
+            {
+              "type": "STRING",
+              "value": "rip"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "acl": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "access-list"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "aaa": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "aaa"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "vty_access": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "line"
+        },
+        {
+          "type": "STRING",
+          "value": "vty"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "bgp": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "router"
+        },
+        {
+          "type": "STRING",
+          "value": "bgp"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "eigrp": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "router"
+        },
+        {
+          "type": "STRING",
+          "value": "eigrp"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "rip": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "router"
+        },
+        {
+          "type": "STRING",
+          "value": "rip"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "trunk_interface": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "interface"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9-]+"
+        },
+        {
+          "type": "STRING",
+          "value": "switchport"
+        },
+        {
+          "type": "STRING",
+          "value": "mode"
+        },
+        {
+          "type": "STRING",
+          "value": "trunk"
+        },
+        {
+          "type": "STRING",
+          "value": "allowed"
+        },
+        {
+          "type": "STRING",
+          "value": "vlan"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9,-]+"
+        }
+      ]
+    },
+    "interface_acl": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "ip"
+            },
+            {
+              "type": "STRING",
+              "value": "access-group"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[0-9]+"
+            },
+            {
+              "type": "STRING",
+              "value": "in"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "ip"
+            },
+            {
+              "type": "STRING",
+              "value": "access-group"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[0-9]+"
+            },
+            {
+              "type": "STRING",
+              "value": "out"
+            }
+          ]
+        }
+      ]
+    },
+    "acl_rule": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "permit"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "acl_rule_conditions"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "deny"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "acl_rule_conditions"
+            }
+          ]
+        }
+      ]
+    },
+    "acl_rule_conditions": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "ip"
+            },
+            {
+              "type": "STRING",
+              "value": "source"
+            },
+            {
+              "type": "STRING",
+              "value": "any"
+            },
+            {
+              "type": "STRING",
+              "value": "destination"
+            },
+            {
+              "type": "STRING",
+              "value": "any"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "ip"
+            },
+            {
+              "type": "STRING",
+              "value": "protocol"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "tcp"
+                },
+                {
+                  "type": "STRING",
+                  "value": "udp"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "source"
+            },
+            {
+              "type": "STRING",
+              "value": "any"
+            },
+            {
+              "type": "STRING",
+              "value": "destination"
+            },
+            {
+              "type": "STRING",
+              "value": "any"
+            }
+          ]
+        }
+      ]
+    },
+    "bgp_peer_authentication": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "neighbor"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9.-]+"
+        },
+        {
+          "type": "STRING",
+          "value": "password"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9-]+"
+        }
+      ]
+    },
+    "eigrp_authentication": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "authentication"
+        },
+        {
+          "type": "STRING",
+          "value": "mode"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "md5"
+            },
+            {
+              "type": "STRING",
+              "value": "text"
+            }
+          ]
+        }
+      ]
+    },
+    "rip_authentication": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "password"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9-]+"
+        }
+      ]
+    },
+    "bgp_neighbor": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "neighbor"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9.-]+"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "vty_login_method": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "line"
+        },
+        {
+          "type": "STRING",
+          "value": "vty"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        },
+        {
+          "type": "STRING",
+          "value": "transport"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "input"
+            },
+            {
+              "type": "STRING",
+              "value": "output"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "ssh"
+        }
+      ]
+    },
+    "switchport_interface": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "interface"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[A-Za-z0-9-]+"
+        },
+        {
+          "type": "STRING",
+          "value": "switchport"
+        }
+      ]
+    },
+    "port_security": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "switchport"
+        },
+        {
+          "type": "STRING",
+          "value": "port-security"
+        },
+        {
+          "type": "STRING",
+          "value": "maximum"
+        },
+        {
+          "type": "STRING",
+          "value": "1"
+        }
+      ]
+    },
+    "access_vlan": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "switchport"
+        },
+        {
+          "type": "STRING",
+          "value": "access"
+        },
+        {
+          "type": "STRING",
+          "value": "vlan"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[0-9]+"
+        }
+      ]
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+
